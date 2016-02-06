@@ -205,7 +205,7 @@ a.shop:after {
     border-radius: 50%;
     background: #623232;
     color: #F18484;
-    text-shadow: 1px 3px #008FC7;
+   
     border: 3px solid #D11F1B;
     padding: 7px 16px;
 }
@@ -225,7 +225,7 @@ a.shop:after {
     padding: 25px;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0px 0px 53px 0px rgba(0,199,227,0.63);
+   
     transition: .5s linear;
 }
 
