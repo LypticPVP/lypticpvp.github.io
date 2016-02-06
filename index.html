@@ -1,6 +1,68 @@
-<html>
-<body>
-  Nothing here right now!
 
+<!DOCTYPE html>
+<html class="js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>LypticPVP</title>
+	<link href='https://fonts.googleapis.com/css?family=Oswald:300,400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="venobox/venobox.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<div class="container">
+		<img src="http://i.imgur.com/7RHimoG.png" class="" alt="LypticPVP" id="logo" />
+		<div id="buttons">
+			<a class="home" href="#" title=""></a>
+			
+			<a class="vote venobox" data-title="Minecraftservers.org" data-gall="voting" data-type="iframe" href="http://minecraftservers.org/server/315152"></a>
+			<div style="display:none;">
+				<a class="venobox" data-title="MCSL" data-gall="voting" data-type="iframe" href="http://www.mc-serverlist.com/viewserver.php?id=14505"></a>
+				<a class="venobox" data-title="Minecraft MP" data-gall="voting" data-type="iframe" href="http://minecraft-mp.com/server-s107725"></a>
+				<a class="venobox" data-title="Minecraft Forum" data-gall="voting" data-type="iframe" href="http://www.minecraftforum.net/servers/2276-lypticpvp"></a>
+			</div>
+			<a class="shop" href="http://store.lypticpvp.com/" title=""></a>
+
+		</div>
+		<div id="server">
+			<p>There are currently <span class="count"></span> players online
+			</p>
+			<button id="copy-button" data-clipboard-text="play.lypticpvp.com" title="Click to copy me.">Copy to Clipboard</button>
+		</div>
+	</div>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="clipboard.min.js"></script>
+<script src="venobox/venobox.min.js"></script>
+<script>
+$(document).ready(function() {
+
+	var clipboard = new Clipboard('#copy-button');
+	$('#copy-button').click( function(e) {
+		$(this).html('copied!');
+		$(this).addClass("copied");
+	});
+
+	$(window).load(function(){
+		$('.preloader').fadeOut('slow',function(){$(this).remove();});
+	});
+
+	$('.venobox').venobox({
+        titleattr: 'data-title',
+        numeratio: true,
+        infinigall: true
+    });
+
+    function loadStatus() {
+		$.ajax({
+			type: 'GET',url: 'http://api.syfaro.net/server/status',data: {ip: 'play.lypticpvp.com', keepUpdated: true}
+		}).done(function(status) {$(".count").text(status.players.now);});
+	}
+	loadStatus();
+	setInterval(function() {
+    	loadStatus();
+	},5000)
+});
+</script>
 </body>
 </html>
