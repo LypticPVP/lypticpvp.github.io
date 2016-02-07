@@ -12,7 +12,20 @@
 <body>
 
 	<div class="container">
-		<img src="http://i.imgur.com/7RHimoG.png" class="" alt="LypticPVP" id="logo" />
+
+		<img src="http://i.imgur.com/7RHimoG.png" class="" alt="LypticPVP" id="logo" /><br>
+
+		<div id="server" >
+			<p><span class="count"></span> players online			</p>
+			
+		</div>
+				<div id="ip" class="">
+			
+			<p>Play at lypticpvp.com!</p>
+		</div>
+
+
+		
 		<div id="buttons">
 			<a class="home" href="#" title=""></a>
 			
@@ -25,11 +38,7 @@
 			<a class="shop" href="http://store.lypticpvp.com/" title=""></a>
 
 		</div>
-		<div id="server">
-			<p>There are currently <span class="count"></span> players online
-			</p>
-			<button id="copy-button" data-clipboard-text="play.lypticpvp.com" title="Click to copy me.">Copy to Clipboard</button>
-		</div>
+		
 	</div>
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="clipboard.min.js"></script>
@@ -56,7 +65,7 @@ $(document).ready(function() {
     function loadStatus() {
 		$.ajax({
 			type: 'GET',url: 'http://api.syfaro.net/server/status',data: {ip: 'play.lypticpvp.com', keepUpdated: true}
-		}).done(function(status) {$(".count").text(status.players.now);});
+		}).done(function(status) {$(".count").text(status.players.now + '/' + status.players.max)});
 	}
 	loadStatus();
 	setInterval(function() {
